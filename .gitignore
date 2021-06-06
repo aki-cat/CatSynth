@@ -1,1 +1,8 @@
+# Compiled stuff
 *.so
+
+# Editor config
+.vscode
+
+# Save directory symlink
+savedir

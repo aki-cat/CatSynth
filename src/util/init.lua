@@ -4,10 +4,19 @@
 local Log = require "util.log"
 local Type = require "util.type"
 local Table = require "util.table"
+local Func = require "util.func"
+local Byte = require "util.byte"
+local Math = require "util.math"
+
+_G.func = {}
+_G.byte = {}
 
 Table.merge(_G, Log)
 Table.merge(_G, Type)
+Table.merge(_G.func, Func)
 Table.merge(_G.table, Table)
+Table.merge(_G.byte, Byte)
+Table.merge(_G.math, Math)
 
 print("Lua enhancement utility initialized!")
 
@@ -24,11 +33,6 @@ print("Lua enhancement utility initialized!")
 [string] NULL
 
 
--- Type getter that returns one of the values above or custom types via metatable '__type' field.
-
-[ function [any] -> [string] ] type
-
-
 -- Enhanced print functions that return their input.
 
 [ function [...] -> [...] ] print
@@ -40,8 +44,5 @@ print("Lua enhancement utility initialized!")
 [ function [table]        -> [...]   ] table.unpack
 [ function [...]          -> [table] ] table.pack
 [ function [table, table] -> [table] ] table.merge
-
--- This one gets the length using table's metatable '__len' field. Defaults to # operator.
-[ function [table]        -> [number]] table.length
 
 ]==]

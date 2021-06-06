@@ -1,13 +1,13 @@
 function love.conf(t)
     -- The name of the save directory (string)
-    t.identity = nil
+    t.identity = "CatSynth"
 
     -- Search files in source directory before save directory (boolean)
     t.appendidentity = false
     -- The LÖVE version this game was made for (string)
     t.version = "11.3"
     -- Attach a console (boolean, Windows only)
-    t.console = false
+    t.console = true
     -- Enable the accelerometer on iOS and Android by exposing it as a Joystick (boolean)
     t.accelerometerjoystick = true
 
@@ -22,13 +22,13 @@ function love.conf(t)
     t.audio.mixwithsystem = true
 
     -- The window title (string)
-    t.window.title = "Untitled"
+    t.window.title = "CatSynth"
     -- Filepath to an image to use as the window's icon (string)
     t.window.icon = nil
     -- The window width (number)
-    t.window.width = 800
+    t.window.width = 480
     -- The window height (number)
-    t.window.height = 600
+    t.window.height = 270
     -- Remove all border visuals from the window (boolean)
     t.window.borderless = false
     -- Let the window be user-resizable (boolean)
@@ -42,7 +42,7 @@ function love.conf(t)
     -- Choose between "desktop" fullscreen or "exclusive" fullscreen mode (string)
     t.window.fullscreentype = "desktop"
     -- Vertical sync mode (number)
-    t.window.vsync = 1
+    t.window.vsync = 0
     -- The number of samples to use with multi-sampled antialiasing (number)
     t.window.msaa = 0
     -- The number of bits per sample in the depth buffer

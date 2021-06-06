@@ -2,42 +2,59 @@ local Type = require "util.type"
 
 local Table = {}
 
-local select = _G.select
-local pairs = _G.pairs
-local type = _G.type
-local getmetatable = _G.getmetatable
-local setmetatable = _G.setmetatable
+local _assert = _G.assert
+local _type = _G.type
+local _select = _G.select
+local _pairs = _G.pairs
+local _table = _G.table
+local _string = _G.string
+local _rawset = _G.rawset
+local _getmetatable = _G.getmetatable
+local _setmetatable = _G.setmetatable
+
+-- Forward declaration of local helper functions
+local _recursiveCopy
 
 Table.unpack = Table.unpack or _G.unpack
 function Table.pack(...)
     local t = { ... }
-    local length = select("#", ...)
-    return setmetatable(t, { __len = length })
+    t.__length = _select("#", ...)
+    return t
 end
 
 function Table.merge(to, from)
-    assert(type(to) == Type.TABLE)
+    _assert(_type(to) == Type.TABLE and _type(from) == Type.TABLE, "Can only merge tables")
 
-    for key in pairs(from) do
+    for key in _pairs(from) do
         to[key] = from[key]
     end
 
     return to
 end
 
-function Table.length(t)
-    assert(type(t) == Type.TABLE)
+function Table.copy(t)
+    return _recursiveCopy(t, {})
+end
 
-    local length = getmetatable(t).__len
-    if type(length) == Type.NUMBER then
-        return length
+-- Local helper functions
+
+function _recursiveCopy(t, refCache)
+    _assert(not refCache[t], "Cannot copy table with cyclic reference.")
+    _assert(not _getmetatable(t), "Cannot copy table with metatable.")
+
+    local out = {}
+
+    for key, value in _pairs(t) do
+        _assert(_type(key) ~= Type.TABLE, "Cannot copy tables with a table as key.")
+
+        if _type(value) == Type.TABLE then
+            _rawset(out, key, _recursiveCopy(value, refCache))
+        else
+            _rawset(out, key, value)
+        end
     end
 
-    if type(length) == Type.FUNCTION then
-        return length(t)
-    end
-
-    return #t
+    return out
 end
 
 return Table

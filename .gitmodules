@@ -1,3 +1,6 @@
 [submodule "lua-rtmidi"]
 	path = luartmidi
 	url = https://github.com/mariobuoninfante/lua-rtmidi.git
+[submodule "src/ext/dkjson"]
+	path = src/ext/dkjson
+	url = https://github.com/LuaDist/dkjson
