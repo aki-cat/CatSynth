@@ -1,0 +1,3 @@
+[submodule "lua-rtmidi"]
+	path = luartmidi
+	url = https://github.com/mariobuoninfante/lua-rtmidi.git

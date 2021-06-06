@@ -1,0 +1,11 @@
+column_limit: 100
+column_table_limit: 80
+indent_width: 4
+use_tab: false
+single_quote_to_double_quote: true
+spaces_inside_table_braces: true
+chop_down_kv_table: true
+chop_down_table: true
+keep_simple_function_one_line: false
+keep_simple_control_block_one_line: false
+break_after_table_lb: true
